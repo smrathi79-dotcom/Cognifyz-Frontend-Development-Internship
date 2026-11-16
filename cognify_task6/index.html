@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognifyz - Task 6: Form Styling and Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #8e44ad;
+        }
+        p {
+            color: #34495e;
+            font-size: 16px;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #732d91;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+        }
+        .success {
+            color: #27ae60;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Frontend Internship Task</h1>
+    
+    <h2>Task 6: Form Styling and Validation</h2>
+    
+    <p>Hello! My name is MUTHU RATHI S. This form features custom CSS styling and real-time JavaScript validation.</p>
+    
+    <!-- Form Container -->
+    <div class="form-container">
+        <form id="myForm" onsubmit="return validateForm(event)">
+            
+            <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" id="username" placeholder="Enter your name">
+                <span id="nameError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="Enter your email">
+                <span id="emailError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter password (min 6 characters)">
+                <span id="passwordError" class="error"></span>
+            </div>
+
+            <button type="submit">Submit Form</button>
+        </form>
+        
+        <div id="successMessage" class="success"></div>
+    </div>
+
+    <!-- JavaScript Validation Logic -->
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Stops form from refreshing page automatically
+
+            // Get values from input fields
+            const name = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Get error text containers
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const successMessage = document.getElementById('successMessage');
+
+            // Clear previous errors/success messages
+            nameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            successMessage.textContent = '';
+
+            let isValid = true;
+
+            // 1. Check if name is empty
+            if (name === '') {
+                nameError.textContent = 'Name is required!';
+                isValid = false;
+            }
+
+            // 2. Check if email is valid
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (email === '') {
+                emailError.textContent = 'Email is required!';
+                isValid = false;
+            } else if (!email.match(emailPattern)) {
+                emailError.textContent = 'Please enter a valid email address (e.g., test@gmail.com)';
+                isValid = false;
+            }
+
+            // 3. Check password length
+            if (password === '') {
+                passwordError.textContent = 'Password is required!';
+                isValid = false;
+            } else if (password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters long!';
+                isValid = false;
+            }
+
+            // If everything is correct
+            if (isValid) {
+                successMessage.textContent = 'Form submitted successfully! 🎉';
+                document.getElementById('myForm').reset(); // Clear form fields
+            }
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>

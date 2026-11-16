@@ -1,0 +1,58 @@
+/* --- styles.scss --- */
+
+// 1. Defining Variables for Colors and Fonts
+$primary-color: #2c3e50;
+$accent-color: #e74c3c;
+$bg-color: #f4f6f9;
+$card-bg: #ffffff;
+$font-family: 'Arial', sans-serif;
+
+// 2. Base Styles
+body {
+    font-family: $font-family;
+    background-color: $bg-color;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+// 3. Nested Styles (Sass Nesting feature)
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+
+    h1 {
+        color: $primary-color;
+        background-color: $card-bg;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: $accent-color;
+    }
+
+    p {
+        color: lighten($primary-color, 20%);
+        font-size: 18px;
+    }
+
+    .box {
+        background: $card-bg;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        margin-top: 20px;
+
+        a {
+            color: $accent-color;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
